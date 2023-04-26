@@ -6,7 +6,8 @@ const HomeScreen = () => {
     return (
         <View>
             <Text style={{ fontSize: 42 }}>Vamos desde el main seguro</Text>
-            <Icon name="home" size={30} color="red" />
+          <Text style={{ fontSize: 42 }}>Sin Miedo al Exito</Text>
+            <Icon name="book" size={50} color="black" />
         </View>
     );
 }
