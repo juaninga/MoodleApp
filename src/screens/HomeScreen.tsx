@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import {
   StyleSheet,
   Text,
@@ -24,7 +24,8 @@ import Animated, { FadeIn,
 
 import styles from "../components/Login/styles";
 import Svg, { Image, Ellipse, ClipPath } from "react-native-svg";
-
+import UserContext from "../context/user/userContext";
+import { login } from "../services/moodle";
 
 export default function HomeScreen() {
   const { height, width } = Dimensions.get("window");
@@ -87,12 +88,31 @@ export default function HomeScreen() {
     }
   };
 
-  const registerHandler = () => {
-    imagePosition.value = 0;
-    if (!isRegistering) {
-      runOnJS(setIsRegistering)(true);
+
+  // Login ************************************************
+
+  const { setUser, setSiteInfo } = useContext(UserContext);
+
+  const loginApp = async () => {
+    formButtonScale.value = withSequence(withSpring(1.5), withSpring(1));
+    try{
+      const username = "j.inga";
+      const password = "ji*Suda2@2@";
+      const response = await login(username, password);
+      const responseData = response.data;
+      console.log(responseData);
+      if (responseData.errorcode) {
+        // manejar error de autenticación
+      } else {
+        setUser({
+          tokenUser: responseData.token,
+        })
+      }
+      
+    } catch (error) {
+      console.log(error);
     }
-  };
+  }
 
   return (
     <Animated.View style={styles.container}>
@@ -117,7 +137,7 @@ export default function HomeScreen() {
       </Animated.View>
       <View style={styles.bottomContainer}>
         <Animated.View style={buttonsAnimatedStyle}>
-          <Pressable style={styles.button} onPress={loginHandler}>
+          <Pressable style={styles.button} onPress={ loginHandler }>
             <Text style={styles.buttonText}>INGRESAR</Text>
           </Pressable>
         </Animated.View>
@@ -141,7 +161,7 @@ export default function HomeScreen() {
             style={styles.textInput}
           />
           <Animated.View style={[styles.formButton, formButtonAnimatedStyle]}>
-            <Pressable onPress={() => formButtonScale.value = withSequence(withSpring(1.5), withSpring(1))}>
+            <Pressable onPress={ loginApp }>
               <Text style={styles.buttonText}>
                 {isRegistering ? "REGISTER" : "LOG IN"}
               </Text>

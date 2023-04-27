@@ -6,7 +6,6 @@ import { State, User, Props } from '../../types/context';
 import { SiteInfo } from '../../types/moodle';
 
 
-
 const UserState = (props: Props) => {
     const initialState: State = {
         user : null,
