@@ -13,8 +13,10 @@ export default function App(): JSX.Element {
   return isLoading ? 
     <Splash setIsLoading={setIsLoading} /> : 
     
-    <UserState>
-      <HomeScreen />
-    </UserState>
+    <NavigationContainer>
+      <UserState>
+        <HomeScreen />
+      </UserState>
+    </NavigationContainer>
   ;
 }
