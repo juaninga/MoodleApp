@@ -1,23 +1,21 @@
-import {
-    USER, SIGN_OUT
-} from './types';
+import { USER, SIGN_OUT } from './types';
+import { State, User, Action } from '../../types/context';
 
-const UserReducer = (state: any, action: any) => {
+const UserReducer = (state: State, action: Action) => {
     switch(action.type) {
 
         case USER:
             return {
                 ...state,
                 user: action.payload,
+                token: action.payload,
             }
 
         case SIGN_OUT:
             return {
                 ...state,
                 user: null,
-                admin: false,
-                ready: false,
-                premium: false,
+                token: null,
             }  
 
         default:
