@@ -6,17 +6,19 @@ export interface MoodleLoginResponse {
 }
 
 export interface SiteInfo {
-    firstname: string;
-    fullname: string;
-    lang: string;
-    lastname: string;
-
     sitename: string;
     siteurl: string;
-    version: string;
-
     username: string;
+    firstname: string;
+    lastname: string;
+    fullname: string;
+    lang: string;
     userid: number;
-    userissiteadmin: boolean;
     userpictureurl: string;
-}
+    userissiteadmin: boolean;
+    version: string;
+    functions: Array<{
+      name: string;
+      version: number;
+    }>;
+  }
