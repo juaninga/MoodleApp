@@ -29,16 +29,6 @@ export default function LottieContainer({
           />
         )}
       </View>
-      <Button
-        title={`Play ${name} by ${author}`}
-        onPress={() => setShow(true)}
-        color="black"
-      />
-      <Button
-        title="Go to website"
-        onPress={async () => await Linking.openURL(source)}
-        color="black"
-      />
     </Fragment>
   );
 }
