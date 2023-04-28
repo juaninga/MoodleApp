@@ -8,9 +8,6 @@ import {
   Pressable,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
-import LottieContainer, {
-  LottieContainerProps
-} from "../components/LottieContainer";
 import Animated, { FadeIn,
   useSharedValue,
   useAnimatedStyle,
@@ -24,6 +21,7 @@ import Animated, { FadeIn,
 
 import styles from "../components/Login/styles";
 import Svg, { Image, Ellipse, ClipPath } from "react-native-svg";
+import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
 export default function HomeScreen() {
@@ -87,13 +85,6 @@ export default function HomeScreen() {
     }
   };
 
-  const registerHandler = () => {
-    imagePosition.value = 0;
-    if (!isRegistering) {
-      runOnJS(setIsRegistering)(true);
-    }
-  };
-
   return (
     <Animated.View style={styles.container}>
       <Animated.View style={[StyleSheet.absoluteFill, imageAnimatedStyle]}>
@@ -127,7 +118,9 @@ export default function HomeScreen() {
             placeholder="Email"
             placeholderTextColor="black"
             style={styles.textInput}
+
           />
+
           {isRegistering && (
             <TextInput
               placeholder="Full Name"
@@ -137,16 +130,22 @@ export default function HomeScreen() {
           )}
           <TextInput
             placeholder="Password"
-            placeholderTextColor="black"
+            placeholderTextColor={Colors.darkText}
+            secureTextEntry={true}
             style={styles.textInput}
           />
-          <Animated.View style={[styles.formButton, formButtonAnimatedStyle]}>
-            <Pressable onPress={() => formButtonScale.value = withSequence(withSpring(1.5), withSpring(1))}>
-              <Text style={styles.buttonText}>
-                {isRegistering ? "REGISTER" : "LOG IN"}
-              </Text>
-            </Pressable>
-          </Animated.View>
+          <View>
+            <Text
+              style={{
+                fontFamily: 'Roboto-Medium',
+                fontSize: 15,
+                color: Colors.primary,
+                alignSelf: 'center',
+              }}>
+              Olvido su contraseña ?
+            </Text>
+          </View>
+
         </Animated.View>
       </View>
     </Animated.View>
