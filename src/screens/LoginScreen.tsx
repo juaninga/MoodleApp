@@ -26,7 +26,7 @@ import { login } from "../services/moodle";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
-export default function HomeScreen() {
+export default function LoginScreen() {
   const { height, width } = Dimensions.get("window");
   const imagePosition = useSharedValue(1);
   const formButtonScale = useSharedValue(1);

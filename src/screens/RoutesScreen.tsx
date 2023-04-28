@@ -2,7 +2,8 @@ import React, { useContext } from 'react';
 import UserContext from "../context/user/userContext"
 import {NavigationContainer} from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import HomeScreen from './HomeScreen';
+import LoginScreen from './LoginScreen';
+import DashBooardScreen from './Dashboard';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,9 +14,9 @@ const RoutesScreen = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 {user ? (
-                    <Stack.Screen name='Home' component={HomeScreen} />
+                    <Stack.Screen name='Home' component={DashBooardScreen} />
                 ): (
-                    <Stack.Screen name='Login' component={HomeScreen} />
+                    <Stack.Screen name='Login' component={LoginScreen} />
                 )}
             </Stack.Navigator>
         </NavigationContainer>
