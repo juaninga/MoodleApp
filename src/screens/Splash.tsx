@@ -9,7 +9,7 @@ export default function Splash({setIsLoading}: SplashProps):JSX.Element {
   return (
     <View style={styles.splash}>
       <LottieView
-        source={require('../assets/splash.json')}
+        source={require('../assets/lottianimation/splash.json')}
         autoPlay
         loop={false}
         resizeMode="cover"
