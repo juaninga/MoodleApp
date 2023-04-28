@@ -14,7 +14,7 @@ const RoutesScreen = () => {
         <NavigationContainer>
             <Stack.Navigator>
                 {user ? (
-                    <Stack.Screen name='Home' component={DashBooardScreen} />
+                    <Stack.Screen name='Dashboard' component={DashBooardScreen} />
                 ): (
                     <Stack.Screen name='Login' component={LoginScreen} />
                 )}
@@ -22,5 +22,5 @@ const RoutesScreen = () => {
         </NavigationContainer>
     );
 }
- 
+ 0.
 export default RoutesScreen;
