@@ -19,7 +19,14 @@ const RoutesScreen = () => {
 
     return (
         <NavigationContainer>
-
+          {/*<Stack.Navigator>
+            {user ? (
+              <Stack.Screen name='Dashboard' component={DashBooardScreen} />
+            ): (
+              <Stack.Screen name='Login' component={LoginScreen} />
+            )}
+          </Stack.Navigator>
+          */}
           <Tab.Navigator
             tabBar={(props) => <AnimatedTabBar {...props} />}
           >
