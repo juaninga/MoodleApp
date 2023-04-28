@@ -21,6 +21,8 @@ import Animated, { FadeIn,
 
 import styles from "../components/Login/styles";
 import Svg, { Image, Ellipse, ClipPath } from "react-native-svg";
+import UserContext from "../context/user/userContext";
+import { login } from "../services/moodle";
 import { Colors } from "react-native/Libraries/NewAppScreen";
 
 
@@ -85,6 +87,32 @@ export default function HomeScreen() {
     }
   };
 
+
+  // Login ************************************************
+
+  const { setUser, setSiteInfo } = useContext(UserContext);
+
+  const loginApp = async () => {
+    formButtonScale.value = withSequence(withSpring(1.5), withSpring(1));
+    try{
+      const username = "j.inga";
+      const password = "ji*Suda2@2@";
+      const response = await login(username, password);
+      const responseData = response.data;
+      console.log(responseData);
+      if (responseData.errorcode) {
+        // manejar error de autenticación
+      } else {
+        setUser({
+          tokenUser: responseData.token,
+        })
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <Animated.View style={styles.container}>
       <Animated.View style={[StyleSheet.absoluteFill, imageAnimatedStyle]}>
@@ -118,9 +146,7 @@ export default function HomeScreen() {
             placeholder="Email"
             placeholderTextColor="black"
             style={styles.textInput}
-
           />
-
           {isRegistering && (
             <TextInput
               placeholder="Full Name"
@@ -130,10 +156,16 @@ export default function HomeScreen() {
           )}
           <TextInput
             placeholder="Password"
-            placeholderTextColor={Colors.darkText}
-            secureTextEntry={true}
+            placeholderTextColor="black"
             style={styles.textInput}
           />
+          <Animated.View style={[styles.formButton, formButtonAnimatedStyle]}>
+            <Pressable onPress={ loginApp }>
+              <Text style={styles.buttonText}>
+                {isRegistering ? "REGISTER" : "LOG IN"}
+              </Text>
+            </Pressable>
+          </Animated.View>
           <View>
             <Text
               style={{

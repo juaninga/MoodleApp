@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import {NavigationContainer} from '@react-navigation/native';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
-import HomeScreen from './src/screens/HomeScreen';
 import Splash from './src/screens/Splash';
 import UserState from './src/context/user/userState';
+import RoutesScreen from './src/screens/RoutesScreen';
 
 const Stack = createNativeStackNavigator();
 
@@ -13,10 +12,8 @@ export default function App(): JSX.Element {
   return isLoading ? 
     <Splash setIsLoading={setIsLoading} /> : 
     
-    <NavigationContainer>
-      <UserState>
-        <HomeScreen />
-      </UserState>
-    </NavigationContainer>
+    <UserState>
+      <RoutesScreen />
+    </UserState>
   ;
 }

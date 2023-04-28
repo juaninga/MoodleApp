@@ -1,7 +1,9 @@
+import { ReactNode } from "react";
+import { SiteInfo } from "./moodle";
 
 
 export type User = {
-    // Define las propiedades de usuario aquí
+    tokenUser: string;
 };
 
 export type Action = {
@@ -11,7 +13,17 @@ export type Action = {
 
 export type State = {
     user: null | User;
-    tokenUser: null | string;
+    siteInfo: null | SiteInfo;
 };
 
-type Dispatch = (action: Action) => void;
+export type Props = {
+    children: ReactNode;
+};
+
+export type UserContextType = {
+    user: User | null;
+    siteInfo: SiteInfo | null;
+    setUser: (user: User) => void;
+    setSiteInfo: (siteInfo: SiteInfo) => void;
+    signOut: () => void;
+};
